@@ -31,7 +31,7 @@ boolean lagoonDeployEnvironment(String sshAgentName, String queryProject, String
             withEnv(['AUTHHEADER=' + queryHeader]) {
                 curlTemplate = '''
                 set +x
-                curl -X POST -H 'Content-Type: application/json' -H "$AUTHHEADER" -d '%s' %s
+                curl -X POST -H 'Content-Type: application/json' -H "$AUTHHEADER" -d '%s' %s 2>/dev/null
                 set -x
                 '''
                 curlCommand = String.format(curlTemplate, query, lagoonEndpoint)
