@@ -5,6 +5,8 @@ The present repository demonstrates how to interact with a Lagoon instance from 
 It describes the most basic integration and explains how one can use this functionality within your own build process.
 Down the line, if there is a need, we can potentially build the functionality here into a shared Jenkins library.
 
+There are two methods presented - one via an sh function, the other via a Jenkins function. Both methods are demonstrated in the present repo's Jenkinsfile.
+
 ## Setup
 
 ### Set up Jenkins credentials
@@ -13,8 +15,14 @@ be used to actually kick off the deployment on the Lagoon instance. Follow the s
 
 Note - the "id" of the credentials is what will be passed as the first argument to the `lagoonDeployEnvironment` function (described below).
 
+### Using the Jenkins sh script
 
-### Using the deploy scripts in your Jenkinsfile
+1. Copy the lagoon_bash_lib.sh file into your repository
+2. Include the functions by running `. ./lagoon_bash_lib.sh` which will make the lagoon_deploy function available to your script
+3. call `lagoon_deploy project-id environment`
+
+
+### Using the Jenkins deploy scripts in your Jenkinsfile
 
 The simplest way to (presently) use the scripts here for deployment is to simply copy/paste the `lagoonDeployEnvironment` function
 from this repository's Jenkinsfile and paste it into your own pipeline.
