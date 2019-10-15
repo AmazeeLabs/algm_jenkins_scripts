@@ -16,10 +16,8 @@
           steps {
             sshagent(['algmprivsecops']) {
               sh '''
-              set +
               . ./lagoon_bash_lib.sh
               lagoon_deploy umami-demo master
-              set -
               '''
             }
           }
