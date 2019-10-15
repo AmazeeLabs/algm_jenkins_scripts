@@ -5,10 +5,20 @@
     buildDiscarder(logRotator(numToKeepStr: '1'))
   }
   stages {
-    stage('Deploy Environment') {
+    stage('Deploy Environment via Jenkins function') {
           steps {
             script {
               assert lagoonDeployEnvironment('algmprivsecops', 'umami-demo' , 'master')
+            }
+          }
+        }
+    stage('Deploy Environment via Bash Library') {
+          steps {
+            sshagent(['algmprivsecops']) {
+              sh '''
+              . ./lagoon_bash_lib.sh
+              lagoon_deploy umami-demo master
+              '''
             }
           }
         }
